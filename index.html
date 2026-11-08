@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARGUS - Boss Edition</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#050810;color:#fff;font-family:system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:20px 16px 30px}
+.top{width:100%;max-width:480px;display:flex;justify-content:space-between;align-items:center}
+.badge{background:#0ea5e9;padding:6px 12px;border-radius:999px;font-size:12px;font-weight:700}
+h1{font-size:42px;letter-spacing:8px;margin:22px 0 0}h1 span{color:#38bdf8}
+.sub{color:#94a3b8;margin:6px 0 18px;text-align:center}
+.core{width:200px;height:200px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#38bdf8,#1e40af 70%);display:flex;align-items:center;justify-content:center;font-size:64px;box-shadow:0 0 60px #0ea5e9;cursor:pointer;transition:.2s}
+.core:active{transform:scale(.95)} .core.listening{animation:pulse 1s infinite}
+@keyframes pulse{0%{box-shadow:0 0 20px #22c55e}50%{box-shadow:0 0 80px #22c55e}100%{box-shadow:0 0 20px #22c55e}}
+.status{margin:16px 0 10px;min-height:24px;color:#7dd3fc;text-align:center}
+#answer{background:#0f172a;border:1px solid #1e293b;width:100%;max-width:480px;border-radius:16px;padding:16px;min-height:110px;line-height:1.6}
+.btns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:16px 0}
+button{border:0;border-radius:999px;padding:12px 18px;font-weight:700;cursor:pointer}
+.talk{background:#22c55e;color:#000}.stop{background:#ef4444;color:#fff}.wake{background:#f59e0b;color:#000}
+input{width:100%;max-width:480px;padding:14px;border-radius:12px;border:1px solid #334155;background:#0f172a;color:#fff;outline:none}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;max-width:480px;margin-top:14px}
+.card{background:#0f172a;border:1px solid #1e293b;border-radius:14px;padding:14px;text-align:center;cursor:pointer}
+.card b{display:block;font-size:18px}.small{font-size:12px;color:#94a3b8;margin-top:18px;text-align:center;line-height:1.6}
+</style>
+</head>
+<body>
+<div class="top"><div><b>ARGUS</b><div style="font-size:11px;color:#94a3b8">Independent • Boss Edition</div></div><div class="badge">● ONLINE</div></div>
+<h1>AR<span>GUS</span></h1>
+<div class="sub">Your Jarvis. Tap the core and speak.<br>Say <b>"Hey Argus"</b> for hands-free.</div>
+<div class="core" id="core" onclick="toggleListen()">👁️</div>
+<div class="status" id="status">Tap core or say Hey Argus</div>
+<div id="answer">Hello Boss. I am ARGUS. I am independent - I live in this file, not in any app.<br><br>Try: "What time is it", "Open YouTube", "Tell me a joke", "Who are you"</div>
+<div class="btns">
+<button class="talk" onclick="toggleListen()">🎤 Talk</button>
+<button class="stop" onclick="stopAll()">⏹ Stop</button>
+<button class="wake" onclick="toggleWake()">🔊 Wake: OFF</button>
+</div>
+<input id="textIn" placeholder="Or type here... e.g. open youtube" onkeydown="if(event.key==='Enter')ask(this.value)">
+<div class="grid">
+<div class="card" onclick="ask('
